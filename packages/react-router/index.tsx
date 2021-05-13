@@ -43,11 +43,7 @@ function warning(cond: boolean, message: string): void {
 }
 
 const alreadyWarned: Record<string, boolean> = {};
-function warningOnce(
-  key: string,
-  cond: boolean,
-  message: string
-) {
+function warningOnce(key: string, cond: boolean, message: string) {
   if (!cond && !alreadyWarned[key]) {
     alreadyWarned[key] = true;
     warning(false, message);
@@ -128,7 +124,7 @@ export function MemoryRouter({
   }
 
   // @ts-ignore
-  let [isPending, startTransition] = React.unstable_useTransition({
+  let [isPending, startTransition] = React.useTransition({
     timeoutMs
   });
 
@@ -806,7 +802,6 @@ type RoutePreloadFunction = (
   location: Location,
   index: number
 ) => void;
-
 
 /**
  * Returns a path with params interpolated.
